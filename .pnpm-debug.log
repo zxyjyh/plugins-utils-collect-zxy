@@ -1,0 +1,47 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "plugins-utils-collect",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC"
+    },
+    "prefix": "/Users/xufeifeng/Developer/zxyRepo/plugins-utils-collect"
+  },
+  "2 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "/Users/xufeifeng/.pnpm-store/v3",
+    "virtualStoreDir": "/Users/xufeifeng/Developer/zxyRepo/plugins-utils-collect/node_modules/.pnpm"
+  },
+  "3 debug pnpm:stage": {
+    "prefix": "/Users/xufeifeng/Developer/zxyRepo/plugins-utils-collect",
+    "stage": "resolution_started"
+  },
+  "4 error pnpm": {
+    "code": "ERR_PNPM_FETCH_404",
+    "hint": "html-webpack is not in the npm registry, or you have no permission to fetch it.\n\nNo authorization header was set for the request.",
+    "request": {
+      "url": "https://registry.npm.taobao.org/html-webpack"
+    },
+    "response": {
+      "size": 0
+    },
+    "pkgName": "html-webpack",
+    "pkgsStack": [],
+    "err": {
+      "name": "pnpm",
+      "message": "GET https://registry.npm.taobao.org/html-webpack: Not Found - 404",
+      "code": "ERR_PNPM_FETCH_404",
+      "stack": "pnpm: GET https://registry.npm.taobao.org/html-webpack: Not Found - 404\n    at RetryOperation._fn (/Users/xufeifeng/pnpm-global/5/node_modules/.pnpm/pnpm@6.32.7/node_modules/pnpm/dist/pnpm.cjs:85723:19)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)"
+    }
+  }
+}
