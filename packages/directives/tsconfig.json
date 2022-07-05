@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib/",
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    "esModuleInterop": true,
+    "lib": [
+      "ES2016",
+      "dom"
+    ]
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+  ]
+}

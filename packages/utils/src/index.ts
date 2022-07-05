@@ -1,5 +1,5 @@
 
-type Callback = (argv?:any)=>void
+type Callback = (argv?: any) => void
 
 
 /**
@@ -8,28 +8,28 @@ type Callback = (argv?:any)=>void
  * @param  {number} count=1
  * @param  {number} wait=200
  */
-export const timerChunk = (sourceArr:any[],cb:Callback,count=1,wait=200)=>{
-  let ret :any
-  let timer:any = null
+export const timerChunk = (sourceArr: any[], cb: Callback, count = 1, wait = 200) => {
+  let ret: any
+  let timer: any = null
 
-  const renderData = ()=>{
-    for (let index = 0; index < Math.min(count,sourceArr.length); index++) {
+  const renderData = () => {
+    for (let index = 0; index < Math.min(count, sourceArr.length); index++) {
       ret = sourceArr.shift();
     }
     cb(ret)
   }
 
-  return ()=>{
-    if(!timer){
-      timer = setInterval(()=>{
-        if(sourceArr.length===0){
+  return () => {
+    if (!timer) {
+      timer = setInterval(() => {
+        if (sourceArr.length === 0) {
           clearImmediate(timer)
           ret = null
           return
         }
 
         renderData()
-      },wait)
+      }, wait)
     }
   }
 }
@@ -37,26 +37,26 @@ export const timerChunk = (sourceArr:any[],cb:Callback,count=1,wait=200)=>{
 /**
  * @param  {()=>void} callback
  */
-export const memorize = (callback:Callback | null)=>{
-let cache = false
-let result:unknown= null
+export const memorize = (callback: Callback | null) => {
+  let cache = false
+  let result: unknown = null
 
-return ()=>{
-  if(cache){
-    return result
-  }else {
-    result = (callback as Callback)()
-    cache = true
-    callback = null
-    return result
+  return () => {
+    if (cache) {
+      return result
+    } else {
+      result = (callback as Callback)()
+      cache = true
+      callback = null
+      return result
+    }
   }
-}
 }
 /**
  * @param  {string|number|object|any[]} val
  */
-export const isType = (val: string | number |object | any[])=>{
-  return (type:string)=>{
+export const isType = (val: string | number | object | any[]) => {
+  return (type: string) => {
     return Object.prototype.toString.call(val) === `[object ${type}]`;
   }
 }
@@ -82,10 +82,10 @@ export const formateUrl = (params: string) => {
  * @description 懒加载可执行函数
  * @param  {Callback} cb
  */
-export const lazyFunction = (factory:Callback)=>{
-  const fac:any = memorize(factory)
+export const lazyFunction = (factory: Callback) => {
+  const fac: any = memorize(factory)
 
-  const f = (...args:any[])=>fac(...args)
+  const f = (...args: any[]) => fac(...args)
 
   return f
 }

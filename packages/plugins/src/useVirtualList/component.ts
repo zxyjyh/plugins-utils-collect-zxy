@@ -1,21 +1,23 @@
-import { UseVirtualListOptions, useVirtualList } from './index';
+//@ts-nocheck
+
+import { UseVirtualListOptions, UseVirtualList } from './index';
 
 
 
 import { defineComponent, h, toRefs } from "vue";
 
 export interface UseVirtualListProps {
-  list:any[]
+  list:[]
   options:UseVirtualListOptions
   height:string
 }
 
-export const UseVirtualList = defineComponent({
+export const UseVirtualListComp = defineComponent({
   name:'UseVirtualList',
   props:['list','options','height'],
   setup(props,ctx){
     const {list :listRef} = toRefs(props)
-    const {list,containerProps,wrapperProps} = useVirtualList(listRef,props.options)
+    const { list, containerProps, wrapperProps } = UseVirtualList(listRef,props.options)
 
     return ()=>h('div',{
       ...containerProps

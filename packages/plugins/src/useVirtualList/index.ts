@@ -1,7 +1,7 @@
 
 
 
-
+//@ts-nocheck
 import { ref, Ref, shallowRef, watch, computed } from 'vue'
 
 import { useElementSize } from '@vueuse/core'

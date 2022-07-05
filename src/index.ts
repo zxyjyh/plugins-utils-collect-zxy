@@ -1,8 +1,8 @@
-import * as utils from './utils'
 
+import { memorize } from '@zxy/utils'
 
 const domApp = document.getElementById('app')
 
-console.log(utils.memorize)
+console.log(memorize)
 
 domApp!.innerHTML = 'plugins-utils-collect-zxy'
