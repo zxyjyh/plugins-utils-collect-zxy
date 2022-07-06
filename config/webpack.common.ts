@@ -36,12 +36,6 @@ const configCommon: webpack.Configuration = {
 	},
 	resolve:{
 		extensions: ['.js', '.ts', '.tsx', '.json','.wasm'],
-		alias: {
-			'@zxy/components': path.resolve(__dirname, 'packages/components/src/index.ts'),
-			'@zxy/plugins': path.resolve(__dirname, 'packages/plugins/src/index.ts'),
-			'@zxy/utils': path.resolve(__dirname, 'packages/utils/src/index.ts'),
-		},
-
 	},
 	devServer:{
 		static:{

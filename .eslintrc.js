@@ -1,23 +1,70 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+    es6: true,
+  },
+  globals: {
+    BMap: true,
+    BMapLib: true,
+  },
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    ecmaVersion: 2020,
+    sourceType: 'module',
+  },
+  extends: [
+    'plugin:vue/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+  ],
+  rules: {
+    'vue/script-setup-uses-vars': 'error',
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    'vue/custom-event-name-casing': 'off',
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint"
+    'no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
     ],
-    "rules": {
-        "@typescript-eslint/no-var-requires": 0,
-        "@typescript-eslint/no-non-null-assertion": 0,
-    }
-}
+    'space-before-function-paren': 'off',
+
+    'vue/attributes-order': 'off',
+    'vue/one-component-per-file': 'off',
+    'vue/html-closing-bracket-newline': 'off',
+    'vue/max-attributes-per-line': 'off',
+    'vue/multiline-html-element-content-newline': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/attribute-hyphenation': 'off',
+    'vue/require-default-prop': 'off',
+    'vue/require-explicit-emits': 'off',
+    'vue/multi-word-component-names': 'off',
+  },
+  overrides: [
+    {
+      files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
+};
