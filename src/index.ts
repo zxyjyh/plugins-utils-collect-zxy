@@ -1,8 +1,11 @@
+//@ts-nocheck
 
-import { memorize } from '@zxy/utils'
+import { createApp } from "vue";
+import App from "./App.vue";
+// import router from "./router";
 
-const domApp = document.getElementById('app')
+const app = createApp(App);
 
-console.log(memorize)
+// app.use(router);
 
-domApp!.innerHTML = 'plugins-utils-collect-zxy'
+app.mount("#app");
