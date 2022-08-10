@@ -272,3 +272,84 @@ export class ImageCache {
     this._caches.clear();
   }
 }
+
+// 缓存 + 类型
+const kindOf = ((cache) => (thing) => {
+  const str = toString.call(thing);
+  return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase());
+})(Object.create(null));
+
+//函数柯里化目的
+//参数分批次传入
+//一个功能一次调用
+//函数全局自调用=》需要全局的变量做参数=》缓存cache=>少用一个全局变量
+//一个函数满足3个功能
+// cache 缓存
+// thing 是什么类型
+// type  是否是某个值（判断是否相等）
+
+function kindOfTest(type) {
+  type = type.toLowerCase();
+  return (thing) => kindOf(thing) === type;
+}
+
+function typeOfTest(type) {
+  return (thing) => {
+    return typeof thing === type;
+  };
+}
+
+export const isDate = kindOfTest("Date");
+
+//封装逻辑，等到函数调用才能拿到结果
+export const isUndefined = typeOfTest("undefined");
+// isUndefined(a)
+
+// {
+//   k1: v1,
+//   k2: v2,
+//   k3: v3
+// }
+// 函数多次调用，参数用对象存储，批量化调用
+// 批量化处理（多个值，多个对应关系）数据结构存储考虑用对象 key value
+export const forEach = (obj, fn, { allOwnKeys = false } = {}) => {
+  if (Array.isArray(obj)) {
+    return obj.forEach((el, index) => fn.call(null, el, index, obj));
+  }
+
+  if (obj.isObject(obj)) {
+    const arr = allOwnKeys ? Object.getOwnPropertyNames(obj) : Object.keys(obj);
+    arr.forEach((el, index) => fn.call(null, el, index, obj));
+  }
+};
+
+export const forEachEntry = (obj, fn) => {
+  const generator = obj && obj[Symbol.iterator];
+
+  const iterator = generator.call(obj);
+
+  let result;
+
+  while ((result = iterator.next()) && !result.done) {
+    const pair = result.value;
+    fn.call(obj, pair[0], pair[1]);
+  }
+};
+
+export const matchAll = (regExp, str) => {
+  let matches;
+  const arr = [];
+
+  while ((matches = regExp.exec(str)) !== null) {
+    arr.push(matches);
+  }
+
+  return arr;
+};
+
+/* Creating a function that will check if an object has a property. */
+export const hasOwnProperty = ((_hasOwnProperty) => {
+  return (obj, prop) => {
+    _hasOwnProperty.call(obj, prop);
+  };
+})(Object.prototype.hasOwnProperty);
